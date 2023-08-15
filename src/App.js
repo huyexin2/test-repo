@@ -1,5 +1,7 @@
 import {BrowserRouter, HashRouter, useLocation} from "react-router-dom";
 import HomeScreen from "./home-screen";
+import mongoose from "mongoose";
+import cors from 'cors'
 import RegisterScreen from "./register-screen";
 import NavigationSidebar from "./navigation-sidebar";
 import SearchResult from "./search result";
@@ -8,15 +10,20 @@ import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import LoginScreen from "./login-screen";
 import whoReducer from "./reducers/who-reducer";
+import searchReducer from "./reducers/search-reducer";
 import Profile from "./profile-screen";
 import DetailContent from "./details-screen/detail_element";
 import tuitsReducer from "./reducers/tuits-reducer";
-import "./App.css"; // Import the App.css file
+import "./App.css";
+import {useEffect} from "react"; // Import the App.css file
 const store = configureStore({
-  reducer: { who: whoReducer, tuits: tuitsReducer },
+  reducer: { who: whoReducer, tuits: searchReducer },
 });
 function App() {
-  return (
+    const CONNECTION_STRING = process.env.DB_CONNECTION_STRING
+    mongoose.connect(CONNECTION_STRING);
+
+    return (
     <Provider store={store}>
       <BrowserRouter>
         <iframe
