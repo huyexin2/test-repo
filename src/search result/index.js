@@ -6,18 +6,18 @@ import SearchItem from "./searchItem";
 
 function SearchResult() {
     const [searchContent, setSearchContent] = useState("");
-    const { tuits, loading } = useSelector(state => state.tuits)
+    const { places, loading } = useSelector(state => state.tuits)
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(findThunk())
     }, [])
-    const dta = tuits.candidates
+    const dta = places.candidates
+    console.log(dta?.[0])
 
 
     const handleSearch = async () => {
-
         try {
-            await dispatch(findThunk( {searchContent} ));
+            await dispatch(findThunk({searchContent}));
         } catch (e) {
             alert(e);
         }
@@ -54,14 +54,24 @@ function SearchResult() {
                     </div>
 
                 </div>
-
-
                 <div className="list-group">
+                    {loading &&
+                        <li className="list-group-item">
+                            Loading...
+                        </li>
+                    }
+                    {
+                        places.candidates?.map(tuit =>
+                            <>
+                            <div>{tuit.name}</div>
+                            <div>{tuit.formatted_address}</div>
+                                <div><button className="btn btn-primary mt-2"
+                                             onClick={handleSearch}> Details</button></div>
+                            </>)
+                    }
 
-                    {dta?.[0].name}
 
-                    {dta?.[0].formatted_address}
-                    <button className="btn btn-primary mt-2"> View Details</button>
+
                 </div>
 
             </div>

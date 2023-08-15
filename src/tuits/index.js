@@ -8,7 +8,7 @@ const TuitsList = () => {
 
   return (
     <div className="waterfall">
-      {tuits.map((tuit) => (
+      {tuits?.map((tuit) => (
         <TuitItem key={tuit._id} tuit={tuit} />
       ))}
     </div>

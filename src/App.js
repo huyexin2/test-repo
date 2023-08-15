@@ -1,6 +1,6 @@
 import {BrowserRouter, HashRouter, useLocation} from "react-router-dom";
 import HomeScreen from "./home-screen";
-import mongoose from "mongoose";
+
 import cors from 'cors'
 import RegisterScreen from "./register-screen";
 import NavigationSidebar from "./navigation-sidebar";
@@ -20,8 +20,7 @@ const store = configureStore({
   reducer: { who: whoReducer, tuits: searchReducer },
 });
 function App() {
-    const CONNECTION_STRING = process.env.DB_CONNECTION_STRING
-    mongoose.connect(CONNECTION_STRING);
+
 
     return (
     <Provider store={store}>
