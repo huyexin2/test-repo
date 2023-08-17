@@ -32,7 +32,7 @@ function SearchResult() {
 
         try {
             console.log(dta)
-            await  dispatch(createThunk([dta]));
+            await  dispatch(createThunk(places));
         } catch (e) {
             alert(e);
         }

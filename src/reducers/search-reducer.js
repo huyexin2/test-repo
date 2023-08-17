@@ -25,7 +25,8 @@ const searchSlice = createSlice({
         [createThunk.fulfilled]:
             (state, { payload }) => {
                 state.loading = false
-                state.places.push(payload)
+
+                // state.places.push(payload)
             },
 
     },
