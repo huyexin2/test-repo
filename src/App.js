@@ -17,7 +17,7 @@ import tuitsReducer from "./reducers/tuits-reducer";
 import "./App.css";
 import {useEffect} from "react"; // Import the App.css file
 const store = configureStore({
-  reducer: { who: whoReducer, tuits: searchReducer },
+  reducer: { who: whoReducer, places: searchReducer, tuits: tuitsReducer},
 });
 function App() {
 
