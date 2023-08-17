@@ -14,3 +14,11 @@ export const createPark = async (park) => {
     const response = await axios.post(TUITS_API, park)
     return response.data;
 }
+
+export const findParkDetails = async ({place_id}) => {
+    const response = await axios.get(`/place/details/json?fields=name%2Crating%2Cformatted_phone_number&place_id=${place_id}&key=AIzaSyAdq_1MT2PfwTJ3sXELKfEX0Pt2_W0AFpk`);
+    const tuits = response.data;
+
+    console.log(tuits)
+    return tuits;
+}

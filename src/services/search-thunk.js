@@ -8,6 +8,13 @@ export const findThunk = createAsyncThunk(
     async (searchContent) =>
         await service.findPark(searchContent)
 );
+
+export const findDetailThunk = createAsyncThunk(
+    "park/findParkDetails",
+    async (place_id) =>
+        await service.findParkDetails(place_id)
+);
+
 export const createThunk = createAsyncThunk(
     'park/createParks',
     async (park) => {

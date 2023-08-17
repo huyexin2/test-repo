@@ -1,19 +1,20 @@
 import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {createThunk, findThunk} from "../services/search-thunk";
-import SearchItem from "./searchItem";
+import { Link } from "react-router-dom";
 
 
 function SearchResult() {
     const [searchContent, setSearchContent] = useState("");
     const { places, loading } = useSelector(state => state.places)
+
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(findThunk())
     }, [])
     const dta = places.candidates
-    dispatch(createThunk(dta));
-    console.log(dta?.[0])
+
+
 
 
     const handleSearch = async () => {
@@ -27,10 +28,11 @@ function SearchResult() {
 
 
 
-    const viewDetailSearch = async () => {
+    const handleDetail = async () => {
 
         try {
-            await dispatch(findThunk( {searchContent} ));
+            console.log(dta)
+            await  dispatch(createThunk([dta]));
         } catch (e) {
             alert(e);
         }
@@ -67,8 +69,8 @@ function SearchResult() {
                             <>
                             <div>{tuit.name}</div>
                             <div>{tuit.formatted_address}</div>
-                                <div><button className="btn btn-primary mt-2"
-                                             onClick={handleSearch}> Details</button></div>
+                                <div><Link to={"/details"}><button className="btn btn-primary mt-2"
+                                             onClick={handleDetail}> Details</button></Link></div>
                             </>)
                     }
 

@@ -1,11 +1,22 @@
 import { Link} from "react-router-dom";
+import {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {findDetailThunk} from "../services/search-thunk";
+
 function DetailContent(){
+    // const [parkDetails, setParkDetails] = useState(state => state.places);
+    const { places } = useSelector(state => state.places)
+    console.log(places.candidates?.[0].formatted_address)
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(findDetailThunk())
+    }, [])
 
     return (
         <>
             <div className="row">
                 <div className="col-2">
-                    <h2>Navigation</h2>
+                    <h2>Details</h2>
                 </div>
                 <div className="col-9">
                     <div className="row">
@@ -15,7 +26,7 @@ function DetailContent(){
                             </div>
                             <div>
                                 <br/>
-                                {<Link className="list-group" to="/profile">Back to result</Link>}
+                                {<Link className="list-group" to="/search">Back to search</Link>}
                             </div>
                         </div>
                         <div className="row">
@@ -23,14 +34,10 @@ function DetailContent(){
                                 <div className="list-group" >
                                     <br/>
                                     <div className="list-group-item">
-                                        Google maps of item location 1
-                                        Google maps of item location 2
-                                        Google maps of item location 3
-                                        Google maps of item location 4
-                                        Google maps of item location 5
-                                        Google maps of item location 6
-                                        Google maps of item location 7
-                                        Google maps of item location 8
+                                        <div>Name: {places.candidates?.[0].name}<br/></div>
+                                        <div>Address: {places.candidates?.[0].formatted_address}<br/></div>
+                                            <div>Rating: {places.candidates?.[0].rating}<br/></div>
+
                                     </div>
                                 </div>
                             </div>
@@ -38,14 +45,8 @@ function DetailContent(){
                                 <div className="list-group" >
                                     <br/>
                                     <div className="list-group-item">
-                                        list of summerized results and links specific to that item 1
-                                        list of summerized results and links specific to that item 2
-                                        list of summerized results and links specific to that item 3
-                                        list of summerized results and links specific to that item 4
-                                        list of summerized results and links specific to that item 5
-                                        list of summerized results and links specific to that item 6
-                                        list of summerized results and links specific to that item 7
-                                        list of summerized results and links specific to that item 8
+                                        MongoDB Rendering
+
                                     </div>
                                 </div>
                             </div>
