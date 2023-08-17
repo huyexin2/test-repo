@@ -1,17 +1,18 @@
 import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { findThunk } from "../services/search-thunk";
+import {createThunk, findThunk} from "../services/search-thunk";
 import SearchItem from "./searchItem";
 
 
 function SearchResult() {
     const [searchContent, setSearchContent] = useState("");
-    const { places, loading } = useSelector(state => state.tuits)
+    const { places, loading } = useSelector(state => state.places)
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(findThunk())
     }, [])
     const dta = places.candidates
+    dispatch(createThunk(dta));
     console.log(dta?.[0])
 
 
@@ -34,6 +35,7 @@ function SearchResult() {
             alert(e);
         }
         setSearchContent("");
+       // await dispatch(createThunk(findThunk( {searchContent})))
     };
 
 

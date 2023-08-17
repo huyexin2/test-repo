@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {findThunk} from "../services/search-thunk";
+import {createThunk, findThunk} from "../services/search-thunk";
 const initialState = {
     places: [],
     loading: false
@@ -21,6 +21,11 @@ const searchSlice = createSlice({
             (state, action) => {
                 state.loading = false
                 state.places = action.error
+            },
+        [createThunk.fulfilled]:
+            (state, { payload }) => {
+                state.loading = false
+                state.places.push(payload)
             },
 
     },
