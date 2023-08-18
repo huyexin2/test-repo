@@ -1,5 +1,5 @@
 import {useDispatch, useSelector} from "react-redux";
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {findDetailThunk} from "../services/search-thunk";
 import {Link} from "react-router-dom";
 import axios from "axios";
@@ -14,17 +14,48 @@ function Details() {
     //     dispatch(findDetailThunk())
     // }, [])
     console.log(places.candidates?.[0])
-    console.log(placeDetails)
+    //console.log(placeDetails)
 
-    async function getData() {
-        const url = 'http://localhost:4000/api/details';
-        // const response = await axios.get(url);
-        // return response.data;
-        const response = await fetch(url);
-        const jsonResponse = await response.json();
-        console.log(jsonResponse);
-    }
-    const u = getData()
+ // async function getData() {
+ //        const url = 'http://localhost:4000/api/details';
+ //        // const response = axios.get(url);
+ //        // console.log(response.data)
+ //        // return response.data;
+ //        const response = await fetch(url);
+ //        const jsonResponse = await response.json();
+ //        console.log(jsonResponse);
+ //        return jsonResponse
+ //    }
+ //    const u = getData()
+ //    console.log(u)
+
+
+    // const address = fetch('http://localhost:4000/api/details')
+    //     .then((response) => response.json())
+    //     .then((user) => {
+    //         return user;
+    //     });
+    //
+    // const printAddress = async () => {
+    //     const a = await address;
+    //     console.log(a?.[0].address);
+    //     return a
+    // };
+    //
+    // const details = printAddress()
+
+    const [data, setData] = useState({});
+    const url = 'http://localhost:4000/api/details';
+
+    useEffect(() => {
+        fetch(url)
+            .then((r) => r.json())
+            .then((r) => {
+                // save data from fetch request to state
+                setData(r);
+                console.log(data)
+            });
+    }, [url]);
 
     return (
         <>
@@ -55,8 +86,12 @@ function Details() {
                                 <div className="list-group" >
                                     <br/>
                                     <div className="list-group-item">
-
+                                        {data?.[0].address}
+                                        {data?.[0].name}
+                                        {data?.[0].place_id}
                                     </div>
+
+
                                 </div>
                             </div>
                         </div>
