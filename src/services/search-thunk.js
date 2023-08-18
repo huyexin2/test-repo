@@ -15,6 +15,7 @@ export const findDetailThunk = createAsyncThunk(
         await service.findParkDetails()
 );
 
+
 export const createThunk = createAsyncThunk(
     'park/createParks',
     async (park) => {

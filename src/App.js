@@ -19,7 +19,7 @@ import searchIdReducer from "./reducers/searchId-reducer";
 import "./App.css";
 import {useEffect} from "react"; // Import the App.css file
 const store = configureStore({
-  reducer: { who: whoReducer, places: searchReducer, tuits: tuitsReducer, placeDetails: searchIdReducer},
+  reducer: { who: whoReducer, places: searchReducer, tuits: tuitsReducer, placesDetails: searchIdReducer},
 });
 function App() {
 

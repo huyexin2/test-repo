@@ -27,20 +27,6 @@ const searchSlice = createSlice({
                 state.loading = false
                 // state.places.push(payload)
             },
-        [findDetailThunk.pending]:
-            (state) => {
-                state.loading = true
-                state.places = [] },
-        [findDetailThunk.fulfilled]:
-            (state, { payload }) => {
-                state.loading = false
-                state.places = payload},
-        [findDetailThunk.rejected]:
-            (state, action) => {
-                state.loading = false
-                state.places = action.error
-            },
-
     },
 });
 
