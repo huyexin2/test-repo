@@ -1,5 +1,5 @@
 import axios from 'axios';
-//const API_BASE = process.env.REACT_APP_SERVER_API_URL
+
 const TUITS_API = `http://localhost:4000/api/places`;
 
 export const findPark = async ({searchContent}) => {
@@ -11,16 +11,15 @@ export const findPark = async ({searchContent}) => {
     return tuits;
 }
 
+
 export const createPark = async (park) => {
     const response = await axios.post(TUITS_API, park)
     return response.data;
 }
 
-export const findParkDetails = async ({place_id}) => {
-    const response = await axios.get(`/place/details/json?fields=name%2Crating%2Cformatted_phone_number&place_id=${place_id}&key=AIzaSyAdq_1MT2PfwTJ3sXELKfEX0Pt2_W0AFpk`);
+export const findParkDetails = async () => {
+    const response = await axios.get(`http://localhost:4000/api/details`);
     const tuits = response.data;
-
-    console.log(tuits)
     return tuits;
 }
 

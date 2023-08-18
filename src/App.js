@@ -1,4 +1,5 @@
-import {BrowserRouter, HashRouter, useLocation} from "react-router-dom";
+import React from 'react';
+import {BrowserRouter} from "react-router-dom";
 import HomeScreen from "./home-screen";
 
 import cors from 'cors'
@@ -12,17 +13,19 @@ import LoginScreen from "./login-screen";
 import whoReducer from "./reducers/who-reducer";
 import searchReducer from "./reducers/search-reducer";
 import Profile from "./profile-screen";
-import DetailContent from "./details-screen/detail_element";
+import Details from "./details-screen/index";
 import tuitsReducer from "./reducers/tuits-reducer";
+import searchIdReducer from "./reducers/searchId-reducer";
 import "./App.css";
 import {useEffect} from "react"; // Import the App.css file
 const store = configureStore({
-  reducer: { who: whoReducer, places: searchReducer, tuits: tuitsReducer},
+  reducer: { who: whoReducer, places: searchReducer, tuits: tuitsReducer, placeDetails: searchIdReducer},
 });
 function App() {
 
 
     return (
+
     <Provider store={store}>
       <BrowserRouter>
         <iframe
@@ -39,9 +42,6 @@ function App() {
           }}
         ></iframe>
         <div className="container">
-          {/* "app-container" is not the Bootstrap container
-          container fluid: no margin
-          container: with margin */}
           <br></br>
           <div className="row">
             <div className="col-1 col-md-2 col-lg-2 d-flex justify-content-center">
@@ -54,7 +54,7 @@ function App() {
                 <Route path="/login" element={<LoginScreen />} />
                 <Route path="/register" element={<RegisterScreen />} />
                 <Route path="/profile/*" element={<Profile />} />
-                <Route path="/details" element={<DetailContent />} />
+                <Route path="/details" element={<Details/>} />
                 <Route path="/search/*" element={<SearchResult />} />
               </Routes>
             </div>

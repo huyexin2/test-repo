@@ -11,8 +11,8 @@ export const findThunk = createAsyncThunk(
 
 export const findDetailThunk = createAsyncThunk(
     "park/findParkDetails",
-    async (place_id) =>
-        await service.findParkDetails(place_id)
+    async () =>
+        await service.findParkDetails()
 );
 
 export const createThunk = createAsyncThunk(
